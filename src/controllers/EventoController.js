@@ -1,10 +1,12 @@
 // src/controllers/EventoController.js
 const EventoModel = require("../models/EventoModel");
+
 // GET /eventos — listar todos
 function index(req, res) {
     const eventos = EventoModel.listarTodos();
     res.json(eventos);
 }
+
 // GET /eventos/:id — buscar por ID
 function show(req, res) {
     const id = parseInt(req.params.id);
@@ -14,6 +16,7 @@ function show(req, res) {
     }
     res.json(evento);
 }
+
 // POST /eventos — criar novo
 function store(req, res) {
     const { nome, descricao, data, local, capacidade } = req.body;
@@ -30,8 +33,8 @@ function store(req, res) {
     });
     res.status(201).json(novoEvento);
 }
-// PUT /eventos/:id — atualizar
 
+// PUT /eventos/:id — atualizar
 function update(req, res) {
     const id = parseInt(req.params.id);
     const eventoAtualizado = EventoModel.atualizar(id, req.body);
@@ -40,6 +43,7 @@ function update(req, res) {
     }
     res.json(eventoAtualizado);
 }
+
 // DELETE /eventos/:id — deletar
 function destroy(req, res) {
     const id = parseInt(req.params.id);
@@ -49,6 +53,7 @@ function destroy(req, res) {
     }
     res.status(204).send();
 }
+
 module.exports = {
     index,
     show,
